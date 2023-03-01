@@ -5,16 +5,13 @@ import ContactForm from './misc'
 
 const App = () => {
   const [activeSection, setActiveSection] = useState('table')
-  const handleSectionClick = section => {
-    setActiveSection(section)
-  }
-
+ 
   return (
     <div>
       <ul>
-        <li onClick={() => handleSectionClick('table')}>List of Actors</li>
-        <li onClick={() => handleSectionClick('form')}>Add Actor</li>
-        <li onClick={() => handleSectionClick('contact')}>Contact Us</li>
+        <li onClick={() => setActiveSection('table')}>List of Actors</li>
+        <li onClick={() => setActiveSection('form')}>Add Actor</li>
+        <li onClick={() => setActiveSection('contact')}>Contact Us</li>
       </ul>
       {activeSection === 'table' && <ActorTable></ActorTable>}
       {activeSection === 'form' && <ActorForm/>}

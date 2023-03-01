@@ -2,12 +2,11 @@ const ActorForm = () => {
     const handleSubmit = async event => {
       event.preventDefault();
       const formData = new FormData(event.target);
+      console.log(event.target)
+      var formObj = {};
+      formData.forEach((value, key) => formObj[key] = value);
+      var json = JSON.stringify(formObj);
 
-      var object = {};
-      formData.forEach((value, key) => object[key] = value);
-      var json = JSON.stringify(object);
-
-      console.log(object)
       await fetch(`/actors`, {
         method: 'POST',
         headers: {
