@@ -14,13 +14,15 @@ const ActorCard = (props) => {
 
         console.log(json, event.target.id)
   
-        // await fetch(`/actors/${id}`, {
+        // await fetch(`/actors/${event.target.id}`, {
         //   method: 'PATCH',
         //   headers: {
         //     'content-type': 'application/json' 
         //   },
         //   body: json
         // });
+
+        setMode('')
       };
 
     return (
@@ -35,10 +37,10 @@ const ActorCard = (props) => {
                 </div>
                 : <form onSubmit={updateActor} id={props.id}>
                     <label> Name: </label>
-                    <input type="text" name="FirstName" />
+                    <input type="text" name="FirstName" defaultValue={String(props.FirstName)}/>
                     <br />
                     <label> Surname: </label>
-                    <input type="text" name="LastName" />
+                    <input type="text" name="LastName" defaultValue={String(props.LastName)}/>
                     <br />
                     <button type="submit"> Update </button>
                     <button onClick={() => setMode('')}> Cancel </button>
