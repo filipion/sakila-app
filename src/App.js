@@ -15,7 +15,7 @@ const App = () => {
   }
  
   return (
-    <div clasName="App">
+    <div className="App">
       <ul>
         <li onClick={() => {
           fetchActors()

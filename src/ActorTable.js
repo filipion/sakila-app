@@ -21,7 +21,7 @@ const ActorTable = (props) => {
               <td>{actor.FirstName}</td>
               <td>{actor.LastName}</td>
               <td>{actor.LastUpdate}</td>
-              <ActorCard FirstName={actor.FirstName} LastName={actor.LastName}></ActorCard>
+              <ActorCard id={actor.ActorId} FirstName={actor.FirstName} LastName={actor.LastName}></ActorCard>
             </tr>
           ))}
         </tbody>
