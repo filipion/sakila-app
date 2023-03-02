@@ -35,10 +35,14 @@ const App = () => {
       </ul>
       <ActorTable actors={actors} refresh={fetchActors}></ActorTable>
       {showForm && <div className="overlay">
-        <ActorForm onClose={() => setShowForm(false)}></ActorForm>
+        <ActorForm onClose={() => {
+          setShowForm(false)
+          fetchActors()
+        }}
+        />
       </div>}
       {showContact && <div className="overlay">
-        <ContactForm onClose={() => setShowContact(false)}></ContactForm>
+        <ContactForm onClose={() =>  setShowContact(false)}></ContactForm>
       </div>}
     </div>
   );
