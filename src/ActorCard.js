@@ -25,6 +25,17 @@ const ActorCard = (props) => {
         props.refresh()
       };
 
+      const deleteActor = async event => {
+        event.preventDefault();
+  
+        await fetch(`/actors/${event.target.id}`, {
+          method: 'DELETE'
+        });
+
+        setMode('')
+        props.refreshAll()
+      };
+
     return (
         <div>
             {
@@ -43,7 +54,7 @@ const ActorCard = (props) => {
                     <div>Name: {props.FirstName}</div>
                     <div>Surname: {props.LastName}</div>
                     <button onClick={() => setMode('edit')}>Edit</button>
-                    <button>Delete</button>
+                    <button onClick={() => props.refreshAll()}>Delete</button>
                 </div>
             }
             

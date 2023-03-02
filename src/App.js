@@ -33,7 +33,7 @@ const App = () => {
           setShowContact(true)
         }}>Contact Us</li>
       </ul>
-      <ActorTable actors={actors} refresh={fetchActors}></ActorTable>
+      <ActorTable actors={actors} refreshAll={fetchActors}></ActorTable>
       {showForm && <div className="overlay">
         <ActorForm onClose={() => {
           setShowForm(false)

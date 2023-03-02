@@ -28,7 +28,7 @@ const ActorTable = (props) => {
         </thead>
         <tbody>
           {props.actors.map(actor => (
-            <ActorRow key={actor.ActorId} actor={actor}></ActorRow>
+            <ActorRow key={actor.ActorId} actor={actor} refreshAll={props.refreshAll}></ActorRow>
           ))}
         </tbody>
       </table>
@@ -53,7 +53,7 @@ const ActorRow = (props) => {
       <td>{actor.LastName}</td>
       <td>{actor.LastUpdate}</td>
       <td>
-        <ActorCard id={actor.ActorId} FirstName={actor.FirstName} LastName={actor.LastName} refresh={refreshActor}/>
+        <ActorCard id={actor.ActorId} FirstName={actor.FirstName} LastName={actor.LastName} refresh={refreshActor} refreshAll={props.refreshAll}/>
       </td>
     </tr>
   )
