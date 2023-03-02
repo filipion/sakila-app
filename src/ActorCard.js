@@ -6,7 +6,6 @@ const ActorCard = (props) => {
     const updateActor = async event => {
         event.preventDefault();
         const formData = new FormData(event.target);
-        console.log(event.target)
         var formObj = {};
         formData.forEach((value, key) => formObj[key] = value);
         formObj['ActorId'] = Number(event.target.id)
@@ -27,7 +26,7 @@ const ActorCard = (props) => {
 
       const deleteActor = async event => {
         event.preventDefault();
-        console.log(`/actors/${event.target.id}`)
+        console.log(`DELETE /actors/${event.target.id}`)
   
         await fetch(`/actors/${event.target.id}`, {
           method: 'DELETE'

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import ActorTable from './ActorTable';
 import ActorForm from './ActorForm'
 import ContactForm from './misc'
@@ -15,9 +15,14 @@ const App = () => {
     const data = await response.json();
     setActors(data);
   }
+
+  useEffect(() => {
+    fetchActors();
+  }, []);
  
   return (
     <div className="App">
+      <h1>Sakila actor DB</h1>
       <ul>
         <li onClick={() => {
           fetchActors()
