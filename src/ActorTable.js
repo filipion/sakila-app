@@ -14,7 +14,7 @@ const ActorTable = (props) => {
   }
 
   return (
-    <div>
+    <div className=".ActorTable">
       <div className="navigation_bar">
         <input type="text" placeholder="Enter actor ID" onChange={(e) => setActiveActorId(e.target.value)} onSubmit={() => scrollToActor(activeActorId)}/>
         <button onClick={() => scrollToActor(activeActorId)}>Scroll to Actor</button>

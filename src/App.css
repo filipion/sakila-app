@@ -30,18 +30,15 @@ button {
 
 
 .navigation_bar {
-  background-color: #ff9a3c;
   display: flex;
+  border: 4px solid #ffc93c;
 }
 
 .App > .navigation_bar {
+  background-color: #ff9a3c;
   height: 10vh;
 }
 
-#navigation_bar > button {
-  border-radius: 5px;
-  width: 10vw;
-}
 
 .navigation_bar > button {
   font-size: large;
@@ -51,8 +48,9 @@ button {
   background-color: #ff9a3c;
 }
 
-.delete_button {
+.ActorCard .delete_button {
   background-color: #ff0000;
+  color: white;
   cursor: pointer;
 }
 

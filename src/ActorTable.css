@@ -5,3 +5,7 @@ table, th, td {
   td, th {
     background-color: #96D4D4;
   }
+
+  .navigation_bar {
+    background-color:#ffc93c;
+  }
