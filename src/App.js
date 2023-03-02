@@ -5,7 +5,6 @@ import ContactForm from './misc'
 import './App.css'
 
 const App = () => {
-  const [activeSection, setActiveSection] = useState('table')
   const [actors, setActors] = useState([]);
   const [showForm, setShowForm] = useState(false);
   const [showContact, setShowContact] = useState(false);
@@ -22,17 +21,14 @@ const App = () => {
       <ul>
         <li onClick={() => {
           fetchActors()
-          setActiveSection('table')
           setShowForm(false)
           setShowContact(false)
         }}>List of Actors</li>
         <li onClick={() => {
-          setActiveSection('form')
           setShowForm(true)
           setShowContact(false)
         }}>Add Actor</li>
         <li onClick={() => {
-          setActiveSection('contact')
           setShowForm(false)
           setShowContact(true)
         }}>Contact Us</li>

@@ -1,17 +1,29 @@
-import React, { useState } from 'react';
+import React, { useState, useRef } from 'react';
 import ActorCard from './ActorCard';
 
 const ActorTable = (props) => {
+  const tableRef = useRef(null)
+  const [activeActorId, setActiveActorId] = useState();
+  
+  const scrollToActor = (id) => {
+    const row = document.querySelector(`#table_row_${id}`)
+    if (row) {
+      row.scrollIntoView() // scroll to the row
+    }
+  }
+
   return (
     <div>
-      <table>
+      <input type="text" placeholder="Enter actor ID" onChange={(e) => setActiveActorId(e.target.value)} onSubmit={() => scrollToActor(activeActorId)}/>
+      <button onClick={() => scrollToActor(activeActorId)}>Scroll to Actor</button>
+      <table ref={tableRef}>
         <thead>
           <tr>
             <th>ActorId</th>
             <th>FirstName</th>
             <th>LastName</th>
             <th>LastUpdate</th>
-            <th>ActorCard</th>
+            <th>Actions</th>
           </tr>
         </thead>
         <tbody>
@@ -35,7 +47,7 @@ const ActorRow = (props) => {
   }
 
   return (
-    <tr key={props.actor.ActorId}>
+    <tr key={props.actor.ActorId} id={`table_row_${props.actor.ActorId}`}>
       <td>{actor.ActorId}</td>
       <td>{actor.FirstName}</td>
       <td>{actor.LastName}</td>
