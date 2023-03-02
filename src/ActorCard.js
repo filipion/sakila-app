@@ -12,15 +12,14 @@ const ActorCard = (props) => {
         formObj['ActorId'] = Number(event.target.id)
         var json = JSON.stringify(formObj);
 
-        console.log(json, event.target.id)
   
-        // await fetch(`/actors/${event.target.id}`, {
-        //   method: 'PATCH',
-        //   headers: {
-        //     'content-type': 'application/json' 
-        //   },
-        //   body: json
-        // });
+        await fetch(`/actors/${event.target.id}`, {
+          method: 'PATCH',
+          headers: {
+            'content-type': 'application/json' 
+          },
+          body: json
+        });
 
         setMode('')
       };
