@@ -2,10 +2,13 @@ import React, { useState } from 'react';
 import ActorTable from './ActorTable';
 import ActorForm from './ActorForm'
 import ContactForm from './misc'
+import './App.css'
 
 const App = () => {
   const [activeSection, setActiveSection] = useState('table')
   const [actors, setActors] = useState([]);
+  const [showForm, setShowForm] = useState(false);
+  const [showContact, setShowContact] = useState(false);
 
   async function fetchActors() {
     console.log("Fetching...")
@@ -20,13 +23,27 @@ const App = () => {
         <li onClick={() => {
           fetchActors()
           setActiveSection('table')
+          setShowForm(false)
+          setShowContact(false)
         }}>List of Actors</li>
-        <li onClick={() => setActiveSection('form')}>Add Actor</li>
-        <li onClick={() => setActiveSection('contact')}>Contact Us</li>
+        <li onClick={() => {
+          setActiveSection('form')
+          setShowForm(true)
+          setShowContact(false)
+        }}>Add Actor</li>
+        <li onClick={() => {
+          setActiveSection('contact')
+          setShowForm(false)
+          setShowContact(true)
+        }}>Contact Us</li>
       </ul>
-      {activeSection === 'table' && <ActorTable actors={actors} refresh={fetchActors}></ActorTable>}
-      {activeSection === 'form' && <ActorForm/>}
-      {activeSection === 'contact' && <ContactForm/>}
+      <ActorTable actors={actors} refresh={fetchActors}></ActorTable>
+      {showForm && <div className="overlay">
+        <ActorForm onClose={() => setShowForm(false)}></ActorForm>
+      </div>}
+      {showContact && <div className="overlay">
+        <ContactForm onClose={() => setShowContact(false)}></ContactForm>
+      </div>}
     </div>
   );
 };
