@@ -1,4 +1,4 @@
-const ActorForm = () => {
+const ActorForm = (props) => {
     const handleSubmit = async event => {
       event.preventDefault();
       const formData = new FormData(event.target);
@@ -14,6 +14,8 @@ const ActorForm = () => {
         },
         body: json
       });
+
+      props.onClose()
     };
 
     return (
@@ -31,6 +33,7 @@ const ActorForm = () => {
           </label>
           <br />
           <button type="submit">Submit</button>
+          <button onClick={props.onClose}>Cancel</button>
       </form>
       </div>
     );
