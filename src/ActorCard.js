@@ -21,20 +21,15 @@ const ActorCard = (props) => {
           body: json
         });
 
+        setMode('')
         props.refresh()
       };
 
     return (
         <div>
             {
-                mode ==! 'edit' 
-                ? <div>
-                    <div>Name: {props.FirstName}</div>
-                    <div>Surname: {props.LastName}</div>
-                    <button onClick={() => setMode('edit')}>Edit</button>
-                    <button>Delete</button>
-                </div>
-                : <form onSubmit={updateActor} id={props.id}>
+                mode === 'edit' 
+                ? <form onSubmit={updateActor} id={props.id}>
                     <label> Name: </label>
                     <input type="text" name="FirstName" defaultValue={String(props.FirstName)}/>
                     <br />
@@ -44,6 +39,12 @@ const ActorCard = (props) => {
                     <button type="submit"> Update </button>
                     <button onClick={() => setMode('')}> Cancel </button>
                 </form>
+                : <div>
+                    <div>Name: {props.FirstName}</div>
+                    <div>Surname: {props.LastName}</div>
+                    <button onClick={() => setMode('edit')}>Edit</button>
+                    <button>Delete</button>
+                </div>
             }
             
         </div>
