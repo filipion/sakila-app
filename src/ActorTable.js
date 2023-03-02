@@ -1,5 +1,6 @@
 import React, { useState, useRef } from 'react';
 import ActorCard from './ActorCard';
+import './ActorTable.css'
 
 const ActorTable = (props) => {
   const tableRef = useRef(null)
@@ -14,16 +15,19 @@ const ActorTable = (props) => {
 
   return (
     <div>
-      <input type="text" placeholder="Enter actor ID" onChange={(e) => setActiveActorId(e.target.value)} onSubmit={() => scrollToActor(activeActorId)}/>
-      <button onClick={() => scrollToActor(activeActorId)}>Scroll to Actor</button>
+      <div className="navigation_bar">
+        <input type="text" placeholder="Enter actor ID" onChange={(e) => setActiveActorId(e.target.value)} onSubmit={() => scrollToActor(activeActorId)}/>
+        <button onClick={() => scrollToActor(activeActorId)}>Scroll to Actor</button>
+      </div>
       <table ref={tableRef}>
         <thead>
           <tr>
             <th>ActorId</th>
+            <th>Actions</th>
             <th>FirstName</th>
             <th>LastName</th>
             <th>LastUpdate</th>
-            <th>Actions</th>
+            <th>Movies</th>
           </tr>
         </thead>
         <tbody>
@@ -49,14 +53,19 @@ const ActorRow = (props) => {
   return (
     <tr key={props.actor.ActorId} id={`table_row_${props.actor.ActorId}`}>
       <td>{actor.ActorId}</td>
-      <td>{actor.FirstName}</td>
-      <td>{actor.LastName}</td>
-      <td>{actor.LastUpdate}</td>
       <td>
         <ActorCard id={actor.ActorId} FirstName={actor.FirstName} LastName={actor.LastName} refresh={refreshActor} refreshAll={props.refreshAll}/>
       </td>
+      <td>{actor.FirstName}</td>
+      <td>{actor.LastName}</td>
+      <td>{actor.LastUpdate}</td>
+      <td>{actor.Films.map((film, idx) => <span key={film.FilmId}>{(idx === 0 ? '' : ', ') + film.Title.split(' ').map(pretty).join(' ')}</span>)}</td>
     </tr>
   )
 }
+
+function pretty(title){
+  return title[0] + title.slice(1).toLowerCase()
+} 
 
 export default ActorTable;

@@ -9,7 +9,8 @@
   left: 37.5%;
   width: 25%;
   height: 25%;
-  background-color: rgb(54, 232, 245);
+  background-color: #ff6f3c;
+  border-radius: 5px;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -17,4 +18,56 @@
 
 .ActorTable {
   margin-top: 50px;
+}
+
+button {
+  color: black;
+  background-color: transparent;
+  cursor: pointer;
+  border: none;
+  font-weight: bold;
+}
+
+
+.navigation_bar {
+  background-color: #ff9a3c;
+  display: flex;
+}
+
+.App > .navigation_bar {
+  height: 10vh;
+}
+
+#navigation_bar > button {
+  border-radius: 5px;
+  width: 10vw;
+}
+
+.navigation_bar > button {
+  font-size: large;
+}
+
+.ActorCard button {
+  background-color: #ff9a3c;
+}
+
+.delete_button {
+  background-color: #ff0000;
+  cursor: pointer;
+}
+
+.first-color { 
+  background: #155263; 
+}
+
+.second-color { 
+  background: #ff6f3c; 
+}
+
+.third-color { 
+	background: #ff9a3c; 
+}
+
+.fourth-color { 
+	background: #ffc93c;
 }

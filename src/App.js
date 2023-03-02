@@ -22,22 +22,21 @@ const App = () => {
  
   return (
     <div className="App">
-      <h1>Sakila actor DB</h1>
-      <ul>
-        <li onClick={() => {
+      <div className="navigation_bar">
+        <button onClick={() => {
           fetchActors()
           setShowForm(false)
           setShowContact(false)
-        }}>List of Actors</li>
-        <li onClick={() => {
+        }}>Actors</button>
+        <button onClick={() => {
           setShowForm(true)
           setShowContact(false)
-        }}>Add Actor</li>
-        <li onClick={() => {
+        }}>Add Actor</button>
+        <button onClick={() => {
           setShowForm(false)
           setShowContact(true)
-        }}>Contact Us</li>
-      </ul>
+        }}>Contact Us</button>
+      </div>
       <ActorTable actors={actors} refreshAll={fetchActors}></ActorTable>
       {showForm && <div className="overlay">
         <ActorForm onClose={() => {
