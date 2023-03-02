@@ -1,21 +1,9 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import ActorCard from './ActorCard';
 
-const ActorTable = () => {
-  const [actors, setActors] = useState([]);
-
-  useEffect(() => {
-    async function fetchActors() {
-      const response = await fetch('/actors');
-      const data = await response.json();
-      setActors(data);
-    }
-
-    fetchActors();
-  });
-
+const ActorTable = (props) => {
   return (
-    <div>
+    <div actors={props.actors}>
       <table>
         <thead>
           <tr>
@@ -27,7 +15,7 @@ const ActorTable = () => {
           </tr>
         </thead>
         <tbody>
-          {actors.map(actor => (
+          {props.actors.map(actor => (
             <tr key={actor.ActorId}>
               <td>{actor.ActorId}</td>
               <td>{actor.FirstName}</td>
