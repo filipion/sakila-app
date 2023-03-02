@@ -21,7 +21,7 @@ const ActorCard = (props) => {
           body: json
         });
 
-        setMode('')
+        props.refresh()
       };
 
     return (
