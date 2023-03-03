@@ -9,7 +9,7 @@ const FilmTable = (props) => {
   const scrollToFilm = (id) => {
     const row = document.querySelector(`#table_row_${id}`)
     if (row) {
-      row.scrollIntoView() // scroll to the row
+      row.scrollIntoView()
     }
   }
 
@@ -24,10 +24,8 @@ const FilmTable = (props) => {
           <tr>
             <th>FilmId</th>
             <th>Actions</th>
-            <th>Name</th>
-            <th>Surname</th>
+            <th>Title</th>
             <th>Last Update</th>
-            <th>Has Starred In</th>
           </tr>
         </thead>
         <tbody>
@@ -54,18 +52,12 @@ const FilmRow = (props) => {
     <tr key={props.film.FilmId} id={`table_row_${props.film.FilmId}`}>
       <td>{film.FilmId}</td>
       <td>
-        <FilmCard id={film.FilmId} FirstName={film.FirstName} LastName={film.LastName} refresh={refreshFilm} refreshAll={props.refreshAll} showDelete={props.showDelete}/>
+        <FilmCard id={film.FilmId} Title={film.Title} refresh={refreshFilm} refreshAll={props.refreshAll} showDelete={props.showDelete}/>
       </td>
-      <td>{film.FirstName}</td>
-      <td>{film.LastName}</td>
+      <td>{film.Title}</td>
       <td>{film.LastUpdate}</td>
-      <td>{film.Films.map((film, idx) => <span key={film.FilmId}>{(idx === 0 ? '' : ', ') + film.Title.split(' ').map(pretty).join(' ')}</span>)}</td>
     </tr>
   )
 }
-
-function pretty(title){
-  return title[0] + title.slice(1).toLowerCase()
-} 
 
 export default FilmTable;

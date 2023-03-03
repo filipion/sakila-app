@@ -41,18 +41,14 @@ const FilmCard = (props) => {
             {
                 mode === 'edit' 
                 ? <form onSubmit={updateFilm} id={props.id}>
-                    <label> Name: </label>
-                    <input type="text" name="FirstName" defaultValue={String(props.FirstName)}/>
-                    <br />
-                    <label> Surname: </label>
-                    <input type="text" name="LastName" defaultValue={String(props.LastName)}/>
+                    <label> Title: </label>
+                    <input type="text" name="FirstName" defaultValue={String(props.Title)}/>
                     <br />
                     <button type="submit"> Update </button>
                     <button onClick={() => setMode('')}> Cancel </button>
                 </form>
                 : <div>
-                    <div>Name: {props.FirstName}</div>
-                    <div>Surname: {props.LastName}</div>
+                    <div>Title: {props.Title}</div>
                     <button onClick={() => setMode('edit')}>Edit</button>
                     {props.showDelete && <button id={props.id} onClick={deleteFilm} className="delete_button danger">Delete</button>}
                 </div>

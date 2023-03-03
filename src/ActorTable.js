@@ -9,7 +9,7 @@ const ActorTable = (props) => {
   const scrollToActor = (id) => {
     const row = document.querySelector(`#table_row_${id}`)
     if (row) {
-      row.scrollIntoView() // scroll to the row
+      row.scrollIntoView()
     }
   }
 
