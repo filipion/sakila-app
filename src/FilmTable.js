@@ -53,7 +53,7 @@ const FilmRow = (props) => {
     <tr key={props.film.FilmId} id={`table_row_${props.film.FilmId}`}>
       <td>{film.FilmId}</td>
       <td>
-        <FilmCard id={film.FilmId} Title={film.Title} refresh={refreshFilm} refreshAll={props.refreshAll} showDelete={props.showDelete}/>
+        <FilmCard id={film.FilmId} Title={film.Title} Description={film.Description} refresh={refreshFilm} refreshAll={props.refreshAll} showDelete={props.showDelete}/>
       </td>
       <td>{film.Title}</td>
       <td>{film.Description}</td>

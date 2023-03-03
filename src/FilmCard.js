@@ -48,6 +48,9 @@ const FilmCard = (props) => {
                     <label> Title: </label>
                     <input type="text" name="Title" defaultValue={String(props.Title)}/>
                     <br />
+                    <label> Desc: </label>
+                    <input type="text" name="Description" defaultValue={String(props.Description)}/>
+                    <br />
                     <button type="submit"> Update </button>
                     <button onClick={() => setMode('')}> Cancel </button>
                 </form>

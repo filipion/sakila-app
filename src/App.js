@@ -22,6 +22,8 @@ const App = () => {
       case 'films':
         setFilms(data)
         break
+      default:
+        break
     }
   }
 
