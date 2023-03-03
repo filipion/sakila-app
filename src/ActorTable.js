@@ -24,15 +24,15 @@ const ActorTable = (props) => {
           <tr>
             <th>ActorId</th>
             <th>Actions</th>
-            <th>FirstName</th>
-            <th>LastName</th>
-            <th>LastUpdate</th>
-            <th>Movies</th>
+            <th>Name</th>
+            <th>Surname</th>
+            <th>Last Update</th>
+            <th>Has Starred In</th>
           </tr>
         </thead>
         <tbody>
           {props.actors.map(actor => (
-            <ActorRow key={actor.ActorId} actor={actor} refreshAll={props.refreshAll}></ActorRow>
+            <ActorRow key={actor.ActorId} actor={actor} refreshAll={props.refreshAll} showDelete={props.showDelete}></ActorRow>
           ))}
         </tbody>
       </table>
@@ -54,7 +54,7 @@ const ActorRow = (props) => {
     <tr key={props.actor.ActorId} id={`table_row_${props.actor.ActorId}`}>
       <td>{actor.ActorId}</td>
       <td>
-        <ActorCard id={actor.ActorId} FirstName={actor.FirstName} LastName={actor.LastName} refresh={refreshActor} refreshAll={props.refreshAll}/>
+        <ActorCard id={actor.ActorId} FirstName={actor.FirstName} LastName={actor.LastName} refresh={refreshActor} refreshAll={props.refreshAll} showDelete={props.showDelete}/>
       </td>
       <td>{actor.FirstName}</td>
       <td>{actor.LastName}</td>

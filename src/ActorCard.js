@@ -54,7 +54,7 @@ const ActorCard = (props) => {
                     <div>Name: {props.FirstName}</div>
                     <div>Surname: {props.LastName}</div>
                     <button onClick={() => setMode('edit')}>Edit</button>
-                    <button id={props.id} onClick={deleteActor} className="delete_button">Delete</button>
+                    {props.showDelete && <button id={props.id} onClick={deleteActor} className="delete_button danger">Delete</button>}
                 </div>
             }
             

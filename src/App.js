@@ -8,6 +8,7 @@ const App = () => {
   const [actors, setActors] = useState([]);
   const [showForm, setShowForm] = useState(false);
   const [showContact, setShowContact] = useState(false);
+  const [showDelete, setShowDelete] = useState(false);
 
   async function fetchActors() {
     console.log("Fetching...")
@@ -22,6 +23,10 @@ const App = () => {
  
   return (
     <div className="App">
+      <button className="post_button" onClick={() => {
+          setShowForm(true)
+          setShowContact(false)
+      }}>+</button>
       <div className="navigation_bar">
         <button onClick={() => {
           fetchActors()
@@ -29,15 +34,18 @@ const App = () => {
           setShowContact(false)
         }}>Actors</button>
         <button onClick={() => {
-          setShowForm(true)
-          setShowContact(false)
-        }}>Add Actor</button>
-        <button onClick={() => {
           setShowForm(false)
-          setShowContact(true)
+          showContact ? setShowContact(false) : setShowContact(true)
         }}>Contact Us</button>
+        <button className="danger" onClick={() => {
+          !showDelete ? setShowDelete(true) : setShowDelete(false)
+        }}>Enable DELETE</button>
       </div>
-      <ActorTable actors={actors} refreshAll={fetchActors}></ActorTable>
+        <ActorTable 
+          actors={actors} 
+          refreshAll={fetchActors}
+          showDelete={showDelete} >  
+        </ActorTable>
       {showForm && <div className="overlay">
         <ActorForm onClose={() => {
           setShowForm(false)
