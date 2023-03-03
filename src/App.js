@@ -6,33 +6,60 @@ import './App.css'
 
 const App = () => {
   const [actors, setActors] = useState([]);
+  const [films, setFilms] = useState([]);
+  const [activeEntity, setActiveEntity] = useState('actors');
   const [showForm, setShowForm] = useState(false);
   const [showContact, setShowContact] = useState(false);
   const [showDelete, setShowDelete] = useState(false);
 
-  async function fetchActors() {
-    console.log("Fetching...")
-    const response = await fetch('/actors');
+  const setItemState = (item, data) => {
+    switch(item) {
+      case 'actors':
+        setActors(data)
+        break
+      case 'films':
+        setFilms(data)
+        break
+    }
+  }
+
+  const fetchEntity = async (item) => {
+    console.log(`Fetching ${item}...`)
+    const response = await fetch(`/${item}`);
     const data = await response.json();
-    setActors(data);
+    setItemState(item, data);
+  }
+
+  const refresh = () => {
+    fetchEntity('actors')
+    fetchEntity('films')
   }
 
   useEffect(() => {
-    fetchActors();
+    refresh();
   }, []);
  
   return (
     <div className="App">
+
       <button className="post_button" onClick={() => {
           setShowForm(true)
           setShowContact(false)
       }}>+</button>
+
       <div className="navigation_bar">
         <button onClick={() => {
-          fetchActors()
+          fetchEntity('actors')
+          setActiveEntity('actors')
           setShowForm(false)
           setShowContact(false)
         }}>Actors</button>
+        <button onClick={() => {
+          fetchEntity('films')
+          setActiveEntity('films')
+          setShowForm(false)
+          setShowContact(false)
+        }}>Films</button>
         <button onClick={() => {
           setShowForm(false)
           showContact ? setShowContact(false) : setShowContact(true)
@@ -41,21 +68,19 @@ const App = () => {
           !showDelete ? setShowDelete(true) : setShowDelete(false)
         }}>{!showDelete ? 'ADMIN' : 'BACK'}</button>
       </div>
+
         <ActorTable 
           actors={actors} 
-          refreshAll={fetchActors}
+          refreshAll={refresh}
           showDelete={showDelete} >  
         </ActorTable>
       {showForm && <div className="overlay">
         <ActorForm onClose={() => {
           setShowForm(false)
-          fetchActors()
-        }}
-        />
+          refresh()
+        }}/>
       </div>}
-      {showContact && <div className="overlay">
-        <ContactForm onClose={() =>  setShowContact(false)}></ContactForm>
-      </div>}
+      {showContact && <div className="overlay"> <ContactForm onClose={() =>  setShowContact(false)}></ContactForm></div>}
     </div>
   );
 };
