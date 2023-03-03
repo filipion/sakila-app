@@ -69,12 +69,17 @@ const App = () => {
           !showDelete ? setShowDelete(true) : setShowDelete(false)
         }}>{!showDelete ? 'ADMIN' : 'BACK'}</button>
       </div>
-
-        <ActorTable 
-          actors={actors} 
-          refreshAll={refresh}
-          showDelete={showDelete} >  
-        </ActorTable>
+        {
+          activeEntity === 'actors'
+          ? <ActorTable 
+              actors={actors} 
+              refreshAll={refresh}
+              showDelete={showDelete} />
+          : <FilmTable 
+            films={films} 
+            refreshAll={refresh}
+            showDelete={showDelete} />
+        }
       {showForm && <div className="overlay">
         <ActorForm onClose={() => {
           setShowForm(false)
