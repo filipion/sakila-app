@@ -1,13 +1,18 @@
-const ActorForm = (props) => {
+const FilmForm = (props) => {
     const handleSubmit = async event => {
       event.preventDefault();
       const formData = new FormData(event.target);
       console.log(event.target)
       var formObj = {};
       formData.forEach((value, key) => formObj[key] = value);
-      var json = JSON.stringify(formObj);
 
-      await fetch(`/actors`, {
+      // Workaround: these need to be set
+      formObj['LanguageId'] = 1
+      formObj['OriginalLanguageId'] = 1
+
+      var json = JSON.stringify(formObj);
+      console.log(json)
+      await fetch(`/films`, {
         method: 'POST',
         headers: {
           'content-type': 'application/json' 
@@ -20,16 +25,16 @@ const ActorForm = (props) => {
 
     return (
       <div>
-      <h2>Add Actor</h2>
+      <h2>Add Film</h2>
       <form onSubmit={handleSubmit}>
           <label>
-          First Name:
-          <input type="text" name="FirstName" />
+          Title
+          <input type="text" name="Title" />
           </label>
           <br />
           <label>
-          Last Name:
-          <input type="text" name="LastName" />
+          Description:
+          <input type="text" name="Description" />
           </label>
           <br />
           <button type="submit">Submit</button>
@@ -39,4 +44,4 @@ const ActorForm = (props) => {
     );
 }
 
-export default ActorForm;
+export default FilmForm;

@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import ActorTable from './ActorTable';
 import FilmTable from './FilmTable';
 import ActorForm from './ActorForm'
+import FilmForm from './FilmForm'
 import ContactForm from './misc'
 import './App.css'
 
@@ -81,10 +82,17 @@ const App = () => {
             showDelete={showDelete} />
         }
       {showForm && <div className="overlay">
-        <ActorForm onClose={() => {
-          setShowForm(false)
-          refresh()
-        }}/>
+        {
+          activeEntity === 'actors'
+          ? <ActorForm onClose={() => {
+            setShowForm(false)
+            refresh()
+          }}/>
+          : <FilmForm onClose={() => {
+            setShowForm(false)
+            refresh()
+          }}/>
+        }
       </div>}
       {showContact && <div className="overlay"> <ContactForm onClose={() =>  setShowContact(false)}></ContactForm></div>}
     </div>

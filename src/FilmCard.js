@@ -9,9 +9,13 @@ const FilmCard = (props) => {
         var formObj = {};
         formData.forEach((value, key) => formObj[key] = value);
         formObj['FilmId'] = Number(event.target.id)
+
+        // Workaround: these need to be set
+        formObj['LanguageId'] = 1
+        formObj['OriginalLanguageId'] = 1
+
         var json = JSON.stringify(formObj);
 
-  
         await fetch(`/films/${event.target.id}`, {
           method: 'PATCH',
           headers: {
@@ -42,7 +46,7 @@ const FilmCard = (props) => {
                 mode === 'edit' 
                 ? <form onSubmit={updateFilm} id={props.id}>
                     <label> Title: </label>
-                    <input type="text" name="FirstName" defaultValue={String(props.Title)}/>
+                    <input type="text" name="Title" defaultValue={String(props.Title)}/>
                     <br />
                     <button type="submit"> Update </button>
                     <button onClick={() => setMode('')}> Cancel </button>
