@@ -25,6 +25,7 @@ const FilmTable = (props) => {
             <th>FilmId</th>
             <th>Actions</th>
             <th>Title</th>
+            <th>Description</th>
             <th>Last Update</th>
           </tr>
         </thead>
@@ -55,6 +56,7 @@ const FilmRow = (props) => {
         <FilmCard id={film.FilmId} Title={film.Title} refresh={refreshFilm} refreshAll={props.refreshAll} showDelete={props.showDelete}/>
       </td>
       <td>{film.Title}</td>
+      <td>{film.Description}</td>
       <td>{film.LastUpdate}</td>
     </tr>
   )

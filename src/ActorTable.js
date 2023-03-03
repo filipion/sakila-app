@@ -26,8 +26,8 @@ const ActorTable = (props) => {
             <th>Actions</th>
             <th>Name</th>
             <th>Surname</th>
-            <th>Last Update</th>
             <th>Has Starred In</th>
+            <th>Last Update</th>
           </tr>
         </thead>
         <tbody>
@@ -58,8 +58,8 @@ const ActorRow = (props) => {
       </td>
       <td>{actor.FirstName}</td>
       <td>{actor.LastName}</td>
-      <td>{actor.LastUpdate}</td>
       <td>{actor.Films.map((film, idx) => <span key={film.FilmId}>{(idx === 0 ? '' : ', ') + film.Title.split(' ').map(pretty).join(' ')}</span>)}</td>
+      <td>{actor.LastUpdate}</td>
     </tr>
   )
 }
