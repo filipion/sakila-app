@@ -1,12 +1,12 @@
 import React, { useState, useRef } from 'react';
-import ActorCard from './ActorCard';
-import './ActorTable.css'
+import FilmCard from './FilmCard';
+import './Table.css'
 
-const ActorTable = (props) => {
+const FilmTable = (props) => {
   const tableRef = useRef(null)
-  const [activeActorId, setActiveActorId] = useState();
+  const [activeFilmId, setActiveFilmId] = useState();
   
-  const scrollToActor = (id) => {
+  const scrollToFilm = (id) => {
     const row = document.querySelector(`#table_row_${id}`)
     if (row) {
       row.scrollIntoView() // scroll to the row
@@ -14,15 +14,15 @@ const ActorTable = (props) => {
   }
 
   return (
-    <div className=".ActorTable">
+    <div className=".FilmTable">
       <div className="navigation_bar">
-        <input type="text" placeholder="Enter actor ID" onChange={(e) => setActiveActorId(e.target.value)} onSubmit={() => scrollToActor(activeActorId)}/>
-        <button onClick={() => scrollToActor(activeActorId)}>Scroll to Actor</button>
+        <input type="text" placeholder="Enter film ID" onChange={(e) => setActiveFilmId(e.target.value)} onSubmit={() => scrollToFilm(activeFilmId)}/>
+        <button onClick={() => scrollToFilm(activeFilmId)}>Scroll to Film</button>
       </div>
       <table ref={tableRef}>
         <thead>
           <tr>
-            <th>ActorId</th>
+            <th>FilmId</th>
             <th>Actions</th>
             <th>Name</th>
             <th>Surname</th>
@@ -31,8 +31,8 @@ const ActorTable = (props) => {
           </tr>
         </thead>
         <tbody>
-          {props.actors.map(actor => (
-            <ActorRow key={actor.ActorId} actor={actor} refreshAll={props.refreshAll} showDelete={props.showDelete}></ActorRow>
+          {props.films.map(film => (
+            <FilmRow key={film.FilmId} film={film} refreshAll={props.refreshAll} showDelete={props.showDelete}></FilmRow>
           ))}
         </tbody>
       </table>
@@ -40,26 +40,26 @@ const ActorTable = (props) => {
   );
 };
 
-const ActorRow = (props) => {
-  const [actor, setActor] = useState(props.actor) 
+const FilmRow = (props) => {
+  const [film, setFilm] = useState(props.film) 
 
-  async function refreshActor() {
-    console.log("Fetching 1 actor...")
-    const response = await fetch(`/actors/${actor.ActorId}`);
+  async function refreshFilm() {
+    console.log("Fetching 1 film...")
+    const response = await fetch(`/films/${film.FilmId}`);
     const data = await response.json();
-    setActor(data);
+    setFilm(data);
   }
 
   return (
-    <tr key={props.actor.ActorId} id={`table_row_${props.actor.ActorId}`}>
-      <td>{actor.ActorId}</td>
+    <tr key={props.film.FilmId} id={`table_row_${props.film.FilmId}`}>
+      <td>{film.FilmId}</td>
       <td>
-        <ActorCard id={actor.ActorId} FirstName={actor.FirstName} LastName={actor.LastName} refresh={refreshActor} refreshAll={props.refreshAll} showDelete={props.showDelete}/>
+        <FilmCard id={film.FilmId} FirstName={film.FirstName} LastName={film.LastName} refresh={refreshFilm} refreshAll={props.refreshAll} showDelete={props.showDelete}/>
       </td>
-      <td>{actor.FirstName}</td>
-      <td>{actor.LastName}</td>
-      <td>{actor.LastUpdate}</td>
-      <td>{actor.Films.map((film, idx) => <span key={film.FilmId}>{(idx === 0 ? '' : ', ') + film.Title.split(' ').map(pretty).join(' ')}</span>)}</td>
+      <td>{film.FirstName}</td>
+      <td>{film.LastName}</td>
+      <td>{film.LastUpdate}</td>
+      <td>{film.Films.map((film, idx) => <span key={film.FilmId}>{(idx === 0 ? '' : ', ') + film.Title.split(' ').map(pretty).join(' ')}</span>)}</td>
     </tr>
   )
 }
@@ -68,4 +68,4 @@ function pretty(title){
   return title[0] + title.slice(1).toLowerCase()
 } 
 
-export default ActorTable;
+export default FilmTable;

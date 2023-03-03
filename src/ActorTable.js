@@ -1,6 +1,6 @@
 import React, { useState, useRef } from 'react';
 import ActorCard from './ActorCard';
-import './ActorTable.css'
+import './Table.css'
 
 const ActorTable = (props) => {
   const tableRef = useRef(null)
