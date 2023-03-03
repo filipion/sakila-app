@@ -39,7 +39,7 @@ const App = () => {
         }}>Contact Us</button>
         <button className="danger" onClick={() => {
           !showDelete ? setShowDelete(true) : setShowDelete(false)
-        }}>Enable DELETE</button>
+        }}>{!showDelete ? 'ADMIN LOGIN' : 'ADMIN LOGOFF'}</button>
       </div>
         <ActorTable 
           actors={actors} 

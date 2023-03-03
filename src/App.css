@@ -55,6 +55,13 @@ button {
   font-size: large;
 }
 
+.navigation_bar > .danger {
+  font-family: 'Courier New', Courier, monospace;
+  margin-left: auto;
+  height: 50%;
+  align-self: center;
+}
+
 .ActorCard button {
   background-color: #ff9a3c;
 }
