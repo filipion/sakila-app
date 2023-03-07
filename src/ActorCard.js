@@ -1,4 +1,5 @@
 import React, {useState} from 'react';
+import API_ROOT from './api_root';
 
 const ActorCard = (props) => {
     const [mode, setMode] = useState('')
@@ -12,7 +13,7 @@ const ActorCard = (props) => {
         var json = JSON.stringify(formObj);
 
   
-        await fetch(`/actors/${event.target.id}`, {
+        await fetch(`${API_ROOT}/actors/${event.target.id}`, {
           method: 'PATCH',
           headers: {
             'content-type': 'application/json' 
@@ -28,7 +29,7 @@ const ActorCard = (props) => {
         event.preventDefault();
         console.log(`DELETE /actors/${event.target.id}`)
   
-        await fetch(`/actors/${event.target.id}`, {
+        await fetch(`${API_ROOT}/actors/${event.target.id}`, {
           method: 'DELETE'
         });
 

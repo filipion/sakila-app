@@ -1,6 +1,7 @@
 import React, { useState, useRef } from 'react';
 import ActorCard from './ActorCard';
 import './Table.css'
+import API_ROOT from './api_root';
 
 const ActorTable = (props) => {
   const tableRef = useRef(null)
@@ -45,7 +46,7 @@ const ActorRow = (props) => {
 
   async function refreshActor() {
     console.log("Fetching 1 actor...")
-    const response = await fetch(`/actors/${actor.ActorId}`);
+    const response = await fetch(`${API_ROOT}/actors/${actor.ActorId}`);
     const data = await response.json();
     setActor(data);
   }

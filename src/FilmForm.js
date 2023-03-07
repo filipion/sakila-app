@@ -1,3 +1,5 @@
+import API_ROOT from "./api_root";
+
 const FilmForm = (props) => {
     const handleSubmit = async event => {
       event.preventDefault();
@@ -12,7 +14,7 @@ const FilmForm = (props) => {
 
       var json = JSON.stringify(formObj);
       console.log(json)
-      await fetch(`/films`, {
+      await fetch(`${API_ROOT}/films`, {
         method: 'POST',
         headers: {
           'content-type': 'application/json' 

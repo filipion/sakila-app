@@ -1,6 +1,7 @@
 import React, { useState, useRef } from 'react';
 import FilmCard from './FilmCard';
 import './Table.css'
+import API_ROOT from './api_root';
 
 const FilmTable = (props) => {
   const tableRef = useRef(null)
@@ -44,7 +45,7 @@ const FilmRow = (props) => {
 
   async function refreshFilm() {
     console.log("Fetching 1 film...")
-    const response = await fetch(`/films/${film.FilmId}`);
+    const response = await fetch(`${API_ROOT}/films/${film.FilmId}`);
     const data = await response.json();
     setFilm(data);
   }

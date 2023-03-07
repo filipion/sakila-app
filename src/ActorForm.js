@@ -1,3 +1,5 @@
+import API_ROOT from "./api_root";
+
 const ActorForm = (props) => {
     const handleSubmit = async event => {
       event.preventDefault();
@@ -7,7 +9,7 @@ const ActorForm = (props) => {
       formData.forEach((value, key) => formObj[key] = value);
       var json = JSON.stringify(formObj);
 
-      await fetch(`/actors`, {
+      await fetch(`${API_ROOT}/actors`, {
         method: 'POST',
         headers: {
           'content-type': 'application/json' 
